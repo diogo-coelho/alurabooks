@@ -4,14 +4,8 @@ import { useState } from "react"
 import imagemPrincipal from './assets/login.png'
 
 import './ModalCadastroUsuario.css'
-import http from "../../http"
 
-interface PropsModalCadastroUsuario {
-    aberta: boolean
-    aoFechar: () => void
-}
-
-const ModalCadastroUsuario = ({ aberta, aoFechar } : PropsModalCadastroUsuario) => {
+const ModalCadastroUsuario = () => {
 
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
@@ -31,28 +25,14 @@ const ModalCadastroUsuario = ({ aberta, aoFechar } : PropsModalCadastroUsuario) 
             cep,
             complemento
         }
-
-        http.post('public/registrar', usuario)
-            .then(() => {
-                alert('Usuário foi cadastrado com sucesso!')
-                setNome('')
-                setEmail('')
-                setEndereco('')
-                setComplemento('')
-                setCep('')
-                setSenha('')
-                setSenhaConfirmada('')
-                aoFechar()
-            })
-            .catch(() => {
-                alert('OPS! Alguma coisa deu errado!')
-            })
+        console.log(usuario)
+        alert('Usuário foi cadastrado com sucesso!')
     }
 
     return (<AbModal 
         titulo="Cadastrar" 
-        aberta={aberta}
-        aoFechar={aoFechar}    
+        aberta={true}
+        aoFechar={() => console.log('fecha ai')}    
     >
         <section className="corpoModalCadastro">
             <figure>
